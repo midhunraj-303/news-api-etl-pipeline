@@ -1,0 +1,39 @@
+project:
+  name: News Analytics ETL
+
+spark:
+  app_name: NewsAnalyticsETL
+  master: local[*]
+
+newsapi:
+  api_key: 
+  base_url: https://newsapi.org/v2/everything
+  query: technology
+  language: en
+  page_size: 100
+
+input:
+  raw_json: data/raw/news.json
+
+output:
+  bronze_path: data/processed/bronze
+  silver_path: data/processed/silver
+  gold_path: data/processed/gold
+  parquet_path: data/output/parquet
+  csv_path: data/output/csv
+
+logging:
+  log_file: logs/pipeline.log
+  level: INFO
+
+database:
+  sqlite_path: data/database/news.db
+  table_name: news_articles
+
+postgresql:
+  host: postgres
+  port: 5432
+  database: news_db
+  table: news_articles
+  user: postgres
+  password: root
