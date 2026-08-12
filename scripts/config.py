@@ -22,8 +22,7 @@ def load_config(config_path: str) -> dict:
         )
 
     with open(config_file,"r",encoding="utf-8") as file:
-        config= yaml.safe_load(file)        # safe_load() is the recommended choice 
-                                            # because it only loads standard YAML data types 
+        config= yaml.safe_load(file)        # safe_load() only loads standard YAML data types 
                                             # and avoids executing arbitrary Python objects from the file.
 
     return config

@@ -40,6 +40,7 @@ def read_bronze(config: dict):
 
     logger.info("Bronze layer loaded succesfully")
 
+
     return spark,df
     # return spark because it created its own SparkSession, 
     # it is responsible for stopping SparkSession
@@ -183,7 +184,7 @@ def source_distribution(df: DataFrame) -> None:
 # articles without author
 # articles with image
 # articles without image
-def descriptiove_statistics(df: DataFrame) -> None:
+def descriptive_statistics(df: DataFrame) -> None:
     """
     Display discriptive statistics
     Args:
@@ -233,6 +234,8 @@ def run_profile(config: dict) -> None:
     Returns : None
     """
 
+    logger.info("-" * 60)
+
     logger.info("Starting profiling stage")
 
     spark,df = read_bronze(config)
@@ -247,8 +250,10 @@ def run_profile(config: dict) -> None:
 
     source_distribution(df)
 
-    descriptiove_statistics(df)
+    descriptive_statistics(df)
 
     stop_spark(spark)
 
     logger.info("Profiling stage completed successfully")
+
+    logger.info("-" * 60)
