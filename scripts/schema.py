@@ -4,6 +4,7 @@ from pyspark.sql.types import(
     StringType
 )
 
+# external schema specification 
 NEWS_ARTICLE_SCHEMA = StructType([
     StructField(
         "source",

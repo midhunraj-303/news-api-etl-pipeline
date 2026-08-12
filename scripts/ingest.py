@@ -110,6 +110,7 @@ def write_bronze(
     logger.info("Bronze layer written successfully")
 
 
+#combine all ingestion functions together
 def run_ingestion(config: dict) -> None:
     """
     Execute the complete ingestion pipeline
@@ -123,15 +124,19 @@ def run_ingestion(config: dict) -> None:
 
     spark = create_spark(config)
 
+    # Load news
     news_data = load_news(config)
 
+    #Extract articles
     articles = extract_articles(news_data)
 
+    #create DataFrame
     df = create_dataframe(
         spark,
         articles
     )
 
+    #Write to bronze as parquet
     write_bronze(
         df,
         config

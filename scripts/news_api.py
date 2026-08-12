@@ -59,6 +59,7 @@ def build_query_params(config: dict) -> dict:
     }
 
 # --------------------------API call---------------------------------
+
 def send_request(config: dict) -> requests.Response:
     """
     send a GET request to the news API
@@ -114,6 +115,7 @@ def validate_response(response: requests.Response) -> dict:
 
 def fetch_news(config: dict) -> dict:
     # This is the only function the rest of the project should use
+    # It uses send_request() and validate_response()
     """
     Fetch news articles from NewsAPI
 
