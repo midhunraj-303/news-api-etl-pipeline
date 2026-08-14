@@ -25,8 +25,13 @@ def create_spark(config: dict) -> SparkSession:
         SparkSession.builder
         .appName(config["spark"]["app_name"])
         .master(config["spark"]["master"])
+        .config(
+            "spark.jars",
+            config["spark"]["jars"]
+        )
         .getOrCreate()
     )
+    spark.sparkContext.setLogLevel("ERROR")
 
     logger.info("SparkSession created successfully")
 

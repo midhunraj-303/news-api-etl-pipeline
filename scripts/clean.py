@@ -125,7 +125,7 @@ def clean_description(df: DataFrame) -> DataFrame:
 #clean content
 def clean_content(df: DataFrame) -> DataFrame:
     """
-    Replace missing article content with 'No Content Available'
+    Replace missing articles content with 'No Content Available'
     
     args:
         df: Spark DataFrame

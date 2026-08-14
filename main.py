@@ -7,6 +7,8 @@ from scripts.profile import read_bronze
 from scripts.clean import run_cleaned
 from scripts.transform import run_transform
 
+from scripts.warehouse import run_warehouse
+
 config = load_config("config/config_local.yaml")
 
 run_ingestion(config)
@@ -16,3 +18,5 @@ run_profile(config)
 run_cleaned(config)
 
 run_transform(config)
+
+run_warehouse(config)
