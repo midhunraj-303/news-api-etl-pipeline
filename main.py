@@ -6,6 +6,7 @@ from scripts.spark import stop_spark
 from scripts.profile import read_bronze
 from scripts.clean import run_cleaned
 from scripts.transform import run_transform
+from scripts.star_schema import run_star_schema
 
 from scripts.warehouse import run_warehouse
 
@@ -20,3 +21,5 @@ run_cleaned(config)
 run_transform(config)
 
 run_warehouse(config)
+
+run_star_schema(config)
