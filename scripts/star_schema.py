@@ -325,6 +325,66 @@ def validate_fact_articles(fact_df: DataFrame) ->None:
 
 
 # -----------------------------load star schema to postgres--------------------------
+def load_star_schema_to_postgres(
+        dim_source: DataFrame,
+        dim_author: DataFrame,
+        dim_date: DataFrame,
+        fact_articles: DataFrame,
+        config: dict
+) -> None:
+    """
+    Load star schema tables into postgreSQL
+
+    Load order:
+    1. dim_source
+    2. dim_author
+    3. dim_date
+    4. fact_df
+
+    args:
+        dim_source: Source dimension
+        dim_author: Author dimension
+        dim_date: Date dimension
+        fact_articles: Article fact table
+        config: Project configuration
+    Returns: None
+    """
+
+    logger.info("-" * 60)
+    logger.info("LOADING STAR SCHEMA INTO POSTGRESQL")
+    logger.info("-" * 60)
+
+    logger.info(
+        f"Fact articles before PostgreSQL load: {fact_articles.count()}"
+)
+
+    load_to_postgres(
+        df = dim_source,
+        table_name = "dim_source",
+        config = config
+    ) 
+
+    load_to_postgres(
+        df = dim_author,
+        table_name = "dim_author",
+        config = config
+    )
+
+    load_to_postgres(
+        df = dim_date,
+        table_name = "dim_date",
+        config = config
+    )
+
+    load_to_postgres(
+        df = fact_articles,
+        table_name = "fact_articles",
+        config = config
+    )
+
+    logger.info("-" * 60)
+    logger.info("STAR SCHEMA LOADED SUCCESSFULLY")
+    logger.info("-" * 60)
 
 
 # ----------------------------- run star schema--------------------------------------
@@ -355,13 +415,15 @@ def run_star_schema(config: dict) -> None:
         df,
         dim_source,
         dim_author,
-        dim_date
+        dim_date,
     )
 
     # fact_df.show(10, truncate=False)
 
     validate_fact_articles(fact_df)
     logger.info("Star schema completed successfully")
+
+    load_star_schema_to_postgres(dim_source,dim_author,dim_date,fact_df,config)
 
 
     
