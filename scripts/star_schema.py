@@ -1,3 +1,7 @@
+# Dimension Table and Fact Table
+
+# Grain : one row represents one news article
+
 from pyspark.sql import SparkSession, DataFrame
 from scripts.spark import create_spark,stop_spark
 from scripts.logger import logger

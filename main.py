@@ -9,6 +9,7 @@ from scripts.transform import run_transform
 from scripts.star_schema import run_star_schema
 
 from scripts.warehouse import run_warehouse
+from scripts.analytics import run_analytics
 
 config = load_config("config/config_local.yaml")
 
@@ -23,3 +24,5 @@ run_transform(config)
 run_warehouse(config)
 
 run_star_schema(config)
+
+run_analytics(config)
