@@ -4,21 +4,29 @@ project:
 spark:
   app_name: NewsAnalyticsETL
   master: local[*]
+  jars: jars/postgresql-42.7.13.jar
 
 newsapi:
-  api_key: 
+  api_key: ""  # API key is loaded from NEWSAPI_API_KEY environment variable
   base_url: https://newsapi.org/v2/everything
-  query: technology
+  query: technology                           # Search term
   language: en
-  page_size: 100
+  page_size: 100                              # pagination
 
 input:
-  raw_json: data/raw/news.json
+  raw_json: data/raw/news.json    # NewsAPI -> Raw JSON -> Spark
 
 output:
   bronze_path: data/processed/bronze
   silver_path: data/processed/silver
-  gold_path: data/processed/gold
+  gold: 
+    articles_by_source: data/processed/gold/articles_by_source
+    articles_by_date: data/processed/gold/articles_by_date
+    articles_by_author: data/processed/gold/articles_by_author
+    articles_with_images: data/processed/gold/articles_with_images
+    summary_metrics: data/processed/gold/summary_metrics
+
+
   parquet_path: data/output/parquet
   csv_path: data/output/csv
 
@@ -28,12 +36,13 @@ logging:
 
 database:
   sqlite_path: data/database/news.db
-  table_name: news_articles
+  table_name: news_article
 
-postgresql:
-  host: postgres
+postgres:
+  host: host.docker.internal
   port: 5432
-  database: news_db
+  database: news_warehouse
+  schema: news_dw
   table: news_articles
   user: postgres
   password: root

@@ -225,7 +225,7 @@ def write_silver(df: DataFrame,config: dict) -> None:
 
 
 # run cleaned
-def run_cleaned(config: dict) -> None:
+def run_clean(config: dict) -> None:
     """
     Combine all functions
     args:
