@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime,timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
@@ -17,9 +17,17 @@ config = load_config("config/config_airflow.yaml")
 
 with DAG(
     dag_id = "news_api_etl_pipeline",
+    description="ETL pipeline for NewsAPI data using PySpark, PostgreSQL and Airflow",
     start_date = datetime(2026,8,25),
     schedule = None,
     catchup = False,
+
+    #Retry configuration
+    default_args = {
+        "retries" : 2,
+        "retry_delay" : timedelta(minutes=5)
+    },
+
     tags = ["news","etl","pyspark","postgresql"],
 )as dag:
 
