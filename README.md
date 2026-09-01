@@ -1,6 +1,6 @@
 # News API ETL Pipeline
 
-A production-style batch ETL pipeline that ingests news articles from the **NewsAPI**, processes and cleans the data using **PySpark**, implements a **Bronze–Silver–Gold medallion architecture**, loads analytical data into **PostgreSQL**, builds a **star schema**, and orchestrates the complete workflow using **Apache Airflow and Docker**.
+A production-oriented batch ETL pipeline that ingests news articles from the **NewsAPI**, processes and cleans the data using **PySpark**, implements a **Bronze–Silver–Gold medallion architecture**, loads analytical data into **PostgreSQL**, builds a **star schema**, and orchestrates the complete workflow using **Apache Airflow and Docker**.
 
 ---
 
@@ -72,11 +72,11 @@ The ingestion process:
 
 The pipeline profiles the incoming dataset to understand:
 
-* Count Records
-* Summarize schema
+* Record count
+* Schema Summary
 * Data types
-* Count null values
-* Count duplicate urls
+* Null value count
+* Duplicate urls count
 * Source distribution
 * Descriptive statistics
 
@@ -88,15 +88,15 @@ The pipeline profiles the incoming dataset to understand:
 The cleaning stage performs operations such as:
 
 * Removing duplicate articles
-* Replace missiing author names
+* Replace missing author names
 * Replace missing description
-* Replace misssing articles content
+* Replace missing articles content
 * Converting date fields
 * Validating article URLs
 
 ---
 
-### 4. Data Transform
+### 4. Data Transformation
 
 The transform stage performs operations such as:
 
@@ -133,13 +133,6 @@ Purpose:
 ### Silver Layer
 
 Contains cleaned and standardized data.
-
-```text
-
-Bronze -> Cleaning & Transformation -> Silver
-
-
-```
 
 Purpose:
 
@@ -540,9 +533,9 @@ The goal of this project is to demonstrate how a raw external API data source ca
 
 Data Engineering | PySpark | Apache Airflow | PostgreSQL | Docker 
 
-GitHub: https://github.com/midhunraj-303
+- GitHub: https://github.com/midhunraj-303
 
-LinkedIn: https://www.linkedin.com/in/midhun-raj-a80878244/
+- LinkedIn: https://www.linkedin.com/in/midhun-raj-a80878244/
 
 ---
 
